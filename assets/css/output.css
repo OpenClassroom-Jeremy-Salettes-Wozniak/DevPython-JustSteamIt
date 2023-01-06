@@ -1,0 +1,281 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Variable permettant d'acceder plus facilment au média */
+html {
+  font-size: 16px;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(
+					16px + 8 *
+						((100vw - 320px) / 880)
+				);
+  }
+}
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+.header {
+  background-color: #262626;
+  color: #FCFCFC;
+  display: block;
+}
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: #E00712 0.1rem solid;
+}
+.header_nav {
+  display: flex;
+}
+.header_title {
+  padding: 1rem;
+}
+.header_nav li {
+  padding: 1rem;
+}
+.header_nav li a {
+  color: #FCFCFC;
+  text-decoration: none;
+}
+.header_nav_categories:hover {
+  cursor: pointer;
+}
+.header_nav_categories_submenu {
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  border-bottom: #E00712 0.1rem solid;
+}
+.header_nav_categories_submenu li {
+  margin: 5%;
+  padding: 0.5rem;
+  display: flex;
+}
+.header_nav_categories_submenu a {
+  color: #FCFCFC;
+  background-color: #E00712;
+  border: #FCFCFC 0.1rem solid;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  display: flex;
+  width: 100%;
+}
+.header_nav_categories_submenu a:hover {
+  color: #262626;
+  border: #262626 0.1rem solid;
+}
+
+footer {
+  padding: 5rem;
+  background-color: #262626;
+  color: #FCFCFC;
+  display: flex;
+  justify-content: center;
+}
+
+main h2 {
+  background-color: #262626;
+  color: #FCFCFC;
+  padding-inline-start: 1rem;
+  padding-block-start: 1rem;
+}
+
+#best_film {
+  border: 1rem solid #262626;
+}
+#best_film img {
+  width: 100%;
+  height: 525px;
+  object-fit: cover;
+  filter: brightness(0.6) blur(4px);
+  display: block;
+}
+#best_film h3 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #E00712;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+#best_film button {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #E00712;
+  color: #FCFCFC;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#best_film button:hover {
+  background-color: #262626;
+  color: #E00712;
+  cursor: pointer;
+}
+
+#best_film_carrousel, .categorie_carrousel_title {
+  display: flex;
+  justify-content: center;
+  background-color: #262626;
+  padding: 1rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+#best_film_carrousel img, .categorie_carrousel_title img {
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+/*# sourceMappingURL=output.css.map */

@@ -1,0 +1,7 @@
+footer{
+    padding: 5rem;
+    background-color: map-get($colors, color--primaire);
+    color: map-get($colors, color--tertiaire);
+    display: flex;
+    justify-content: center
+}

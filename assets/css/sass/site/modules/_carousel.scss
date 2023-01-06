@@ -1,0 +1,64 @@
+main{
+    h2{
+        background-color: map-get($colors, color--primaire);
+        color: map-get($colors, color--tertiaire);
+        padding-inline-start: 1rem;
+        padding-block-start: 1rem
+    }
+}
+
+#best_film{
+    border: 1rem solid map-get($colors, color--primaire);
+    img{
+        width: 100%;
+        height: 525px;
+        object-fit: cover;
+        filter:   brightness(0.6) blur(4px);
+        display: block;
+    }
+    h3{
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: map-get($colors, color--secondaire);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    button{
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: map-get($colors, color--secondaire);
+        color:  map-get($colors, color--tertiaire);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            background-color: map-get($colors, color--primaire);
+            color: map-get($colors, color--secondaire);
+            cursor: pointer;
+        }
+    }
+}
+
+#best_film_carrousel, .categorie_carrousel_title{
+    display: flex;
+    justify-content: center;
+    background-color: map-get($colors, color--primaire);
+    padding: 1rem;
+
+    img{
+        object-fit: cover;
+        filter:   brightness(0.6)
+    }
+    max-width: 100%;
+    overflow: hidden;
+}
+

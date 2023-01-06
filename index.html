@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JustStreamIt est un site de streaming de films et séries.">
+    <meta name="keywords" content="streaming, film, série, JustStreamIt">
+    <meta name="author" content="JustStreamIt">
+    <link rel="stylesheet" href="assets/css/output.css">
+
+    <title>JustStreamIt</title>
+    <script src="assets/js/films.js"></script>
+    <script src="assets/js/categorie.js"></script>
+    <script src="assets/js/event.js"></script>
+</head>
+<body>
+    <!-- importer le fichier ./modules/header/header.html -->
+    <header class="header">
+        <div class="header_container">
+            <h1 class="header_title">JustStreamIt</h1>
+            <ul class="header_nav">
+                <li class="header_nav_accueil"><a href="index.html">Accueil</a></li>
+                <li class="header_nav_categories">
+                    <div class="header_categories" id="categorie">Catégories</div>
+                </li>
+            </ul>
+        </div>
+        <ul class="header_nav_categories_submenu">
+            <!-- Générer les différentes catégories dans le fichier  -->
+        </ul>
+    </header>
+    <main>
+        <h2>Le meilleur film du moment</h2>
+        <div id="best_film">
+        </div>
+        <!-- Créer un carrousel des meilleurs films -->
+        <h2>Les meilleurs films</h2>
+        <div id="best_film_carrousel">
+
+        </div>
+        <!-- Créer des caroussels de films par catégorie -->
+        <div id="categorie_carrousel">
+        
+        </div>
+
+    </main>
+    <footer>
+        <p>JustStreamIt &copy; 2021</p>
+    </footer>
+</body>
+</html>

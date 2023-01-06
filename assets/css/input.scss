@@ -1,0 +1,13 @@
+@import 'sass/configurations/_reset.scss';
+@import 'sass/configurations/_typography.scss';
+
+@import 'sass/code/_maps.scss';
+@import 'sass/code/_mixins.scss';
+
+@import './sass/site/general/header.scss';
+@import './sass/site/general/footer.scss';
+
+@import './sass/site/modules/_carousel.scss';
+@import './sass/site/modules/_modal.scss';
+
+@import './sass/site/pages/_index.scss';

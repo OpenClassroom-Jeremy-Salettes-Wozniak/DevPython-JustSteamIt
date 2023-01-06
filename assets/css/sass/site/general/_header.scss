@@ -1,0 +1,57 @@
+.header{
+    background-color:  map-get($colors, color--primaire);
+    color: map-get($colors, color--tertiaire);
+    display: block;
+
+    &_container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        border-bottom: map-get($colors, color--secondaire) 0.1rem solid;
+    }
+    &_nav{
+        display: flex;
+    }
+    &_title{
+        padding: 1rem
+    }
+    &_nav li{
+        padding: 1rem;
+    }
+    &_nav li a{
+        color: map-get($colors, color--tertiaire);
+        text-decoration: none;
+    }
+    &_nav_categories:hover{
+        cursor: pointer;
+    }
+    &_nav_categories_submenu{    
+        display: none;
+        // display: grid; 
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        border-bottom: map-get($colors, color--secondaire) 0.1rem solid;
+    }
+    &_nav_categories_submenu li {
+        margin: 5%;
+        padding: 0.5rem;
+        display: flex;
+    }
+    &_nav_categories_submenu a{
+        color: map-get($colors, color--tertiaire);
+        background-color: map-get($colors, color--secondaire);
+        border: map-get($colors, color--tertiaire) 0.1rem solid;
+        text-decoration: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        display: flex;
+        width: 100%;
+    }
+    &_nav_categories_submenu a:hover{
+        color: map-get($colors, color--primaire);
+        border: map-get($colors, color--primaire) 0.1rem solid;
+    }
+}

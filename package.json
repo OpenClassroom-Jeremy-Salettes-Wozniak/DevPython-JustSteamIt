@@ -1,0 +1,15 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass --watch assets/css/input.scss assets/css/output.css"
+  },
+  "author": "Jérémy Salettes-Wozniak",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^8.0.0",
+    "sass": "^1.57.0"
+  }
+}
