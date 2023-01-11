@@ -270,12 +270,18 @@ main h2 {
   justify-content: center;
   background-color: #262626;
   padding: 1rem;
-  max-width: 100%;
+  max-width: 70%;
   overflow: hidden;
 }
 #best_film_carrousel img, .categorie_carrousel_title img {
   object-fit: cover;
   filter: brightness(0.6);
+}
+
+.container_carrousel {
+  background-color: #262626;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=output.css.map */

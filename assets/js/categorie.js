@@ -35,27 +35,33 @@ let afficherCategories = async () => {
 afficherCategories();
 
 
-let afficherFilmsParCategorie = async (categoriesName) => {
+let tableauFilms = [];
+let afficherFilmsParCategorie = async (categoriesName, rangestart=0, rangeend=6) => {
     let filmsByCategorie = ["http://localhost:8000/api/v1/titles/?genre=" + categoriesName + "&sort_by=-imdb_score"];
     // Affiche que les 5 premiere page de l'api par categorie avec un classement par note soit environ 20 films
     for (let i = 0; i < 5; i++) {
+
         try {
             const response = await fetch(filmsByCategorie[i]);
             const data = await response.json();
             const films = document.querySelector("#" + categoriesName + "");
             if (data.next != null) {
                 filmsByCategorie.push(data.next);
-                console.log(filmsByCategorie);
             }
-            for (let j = 0; j < data.results.length; j++) {
-                // Afficher en mode carrousel les films par catégorie
-                films.innerHTML += "<div class='film_carrousel_item'>";
-                films.innerHTML += "<img src='" + data.results[j].image_url + "' alt='Image du film " + data.results[j].title + "'>";
-                films.innerHTML += "</div>";
+            else if (data.next == null) {
+                console.log("Fin de la pagination");
             }
-
-        }
-        catch (error) {
+            for (let i = 0; i < data.results.length; i++) {
+                tableauFilms.push(data.results[i]);
+                console.log(tableauFilms);
+                
+                for (let j = rangestart; j < rangeend; j++) {   
+                    console.log("Console.log" + [j]);
+                    console.log(data.results[j]);
+                    films.innerHTML += "<div class='categorie_carrousel_film'><a href='http://localhost:8000/Film/" + data.results[j].id + "'><img src='" + data.results[j].image_url + "' alt=''></a></div>";
+                }
+            }
+        } catch (error) {
             console.log(error);
         }
     }
@@ -70,10 +76,7 @@ let afficherCategoriesCarrousel = async () => {
             for (let i = 0; i < data.results.length; i++) {
                 // Afficher en mode carrousel les catégories
                 categories.innerHTML += "<h2>" + data.results[i].name + "</h2>";
-                categories.innerHTML += "<div class='container_carrousel'>";
-                categories.innerHTML += "<div id=" + data.results[i].name + " class='categorie_carrousel_title'>";
-                categories.innerHTML += "</div>";
-                categories.innerHTML += "</div>";
+                categories.innerHTML += "<div class='container_carrousel'><div id=" + data.results[i].name + " class='categorie_carrousel_title'></div></div>";
                 afficherFilmsParCategorie(data.results[i].name);
             }
         } catch (error) {

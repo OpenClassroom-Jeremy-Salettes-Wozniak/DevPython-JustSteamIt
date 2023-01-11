@@ -58,7 +58,12 @@ main{
         object-fit: cover;
         filter:   brightness(0.6)
     }
-    max-width: 100%;
+    max-width: 70%;
     overflow: hidden;
 }
 
+.container_carrousel{
+    background-color: map-get($colors, color--primaire);
+    display: flex;
+    justify-content: center;
+}
