@@ -47,8 +47,26 @@ let LesMeuilleursFilms = async () => {
         if (data.results){
             LesMeuilleursFilms.innerHTML += "<div class='LesMeuilleursFilms_container'></div>";
             const LesMeuilleursFilmsContainer = document.querySelector('.LesMeuilleursFilms_container');
+
+            // Si la taile de l'écran est inférieur à 768px 
+            if (window.innerWidth < 768) {
+                k = 0;
+                j = 1;
+            }
+            // Si la taile de l'écran est inférieur à 1024px
+            else if (window.innerWidth < 1024) {
+                k = 0;
+                j = 3;
+            }
+            // Si la taile de l'écran est supérieur à 1024px
+            else {
+                k = 0;
+                j = 5;
+            }
+            
             // PRECEDENTS
             LesMeuilleursFilmsContainer.innerHTML += "<button class='LesMeuilleursFilms_btn' type='button'><span>Précédents</span></button>";
+
             // FILMS
             LesMeuilleursFilmsContainer.innerHTML += "<div class='LesMeuilleursFilms_container_film'></div>";
             const LesMeuilleursFilmsContainerFilm = document.querySelectorAll('.LesMeuilleursFilms_container_film');
@@ -59,8 +77,11 @@ let LesMeuilleursFilms = async () => {
                 film.setAttribute('src', data.results[i].image_url);
                 LesMeuilleursFilmsContainerFilm[0].appendChild(film);
             }
+
             // SUIVANTS
             LesMeuilleursFilmsContainer.innerHTML += "<button class='LesMeuilleursFilms_btn' type='button'><span>Suivants<span></button>"; 
+
+            
         }
 
     } catch (error) {
