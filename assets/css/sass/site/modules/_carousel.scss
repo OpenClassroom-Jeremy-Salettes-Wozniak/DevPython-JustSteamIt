@@ -1,69 +1,141 @@
-main{
-    h2{
+// SECTION 
+.meuilleurFilm {
+    max-width: 100%;
+    max-height: 100%;
+    &_container{
+        padding: 1rem;
         background-color: map-get($colors, color--primaire);
-        color: map-get($colors, color--tertiaire);
-        padding-inline-start: 1rem;
-        padding-block-start: 1rem
     }
-}
 
-#best_film{
-    border: 1rem solid map-get($colors, color--primaire);
-    img{
+    &_title {
+        color: map-get($colors, color--tertiaire);
+        &_h2 {
+            background-color: map-get($colors, color--primaire);
+            font-size: 1rem;
+            padding-block: 0.5rem;
+            padding-inline-start: 1rem;
+            border-bottom: #E00712 0.1rem solid;
+        }
+
+        &_h3 {
+            width: 98%;
+            font-size: 1.5rem;
+            color: map-get($colors, color--tertiaire);
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 30%;
+        }
+    }
+    
+    &_image {
         width: 100%;
-        height: 525px;
+        height: 580px;
         object-fit: cover;
-        filter:   brightness(0.6) blur(4px);
+        filter: brightness(0.6) blur(3.5px);   
         display: block;
     }
-    h3{
+    
+    &_btn{
+        width: 98%;
+        display: flex;
+        justify-content: center;
         position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: map-get($colors, color--secondaire);
-        font-size: 1.5rem;
-        font-weight: 700;
-        text-align: center;
-    }
-    button{
-        position: absolute;
-        top: 48%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: map-get($colors, color--secondaire);
-        color:  map-get($colors, color--tertiaire);
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        &:hover{
-            background-color: map-get($colors, color--primaire);
-            color: map-get($colors, color--secondaire);
+        top: 45%;
+
+        button{
+            background-color: map-get($colors, color--secondaire);
+            color: map-get($colors, color--tertiaire);
+            border: none;
+            font-size: 0.8rem;
+            padding: 0.7rem;
+            border-radius: 0.1rem;
             cursor: pointer;
         }
     }
+
 }
 
-#best_film_carrousel, .categorie_carrousel_title{
-    display: flex;
-    justify-content: center;
-    background-color: map-get($colors, color--primaire);
-    padding: 1rem;
 
-    img{
-        object-fit: cover;
-        filter:   brightness(0.6)
+// SECTION 
+.LesMeuilleursFilms {
+    max-width: 100%;
+    max-height: 100%;
+    background-color: map-get($colors, color--primaire);
+    &_title {
+        color: map-get($colors, color--tertiaire);
+        &_h2 {
+            background-color: map-get($colors, color--primaire);
+            font-size: 1rem;
+            padding-block: 0.5rem;
+            padding-inline-start: 1rem;
+            border-block: #E00712 0.1rem solid;
+        }
+
+        &_h3 {
+            width: 100%;
+            font-size: 1.5rem;
+            color: map-get($colors, color--tertiaire);
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 30%;
+        }
     }
-    max-width: 70%;
-    overflow: hidden;
-}
+    &_container{
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-.container_carrousel{
-    background-color: map-get($colors, color--primaire);
-    display: flex;
-    justify-content: center;
+        &_film{
+            display: flex;
+            justify-content: center;
+        }
+
+    }
+    &_image {
+        display: flex;
+        height: 250px;
+    }
+    button{
+        height: 251px;
+        position: sticky;
+        width: 6%;
+        background-color: map-get($colors, color--secondaire);
+        color: map-get($colors, color--tertiaire);
+        border: 0rem solid;
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    span{
+        width: 100%;
+    }
+    // &_image{
+    //     display: block;
+    //     width: 14.3%;
+    // }
+
+    // &_container{
+    //     display: flex;
+    //     padding: 1rem;
+    //     background-color: map-get($colors, color--primaire);
+    //     justify-content: center;
+
+    //     &_film{
+    //         display: flex;
+    //     }
+    // }
+
+    // &_btn{
+    //     display: flex;
+        
+    //     button{
+    //         padding: 1rem;
+    //         border: inset 0.1rem #E00712;
+    //         background-color: map-get($colors, color--secondaire);
+    //         color: map-get($colors, color--tertiaire);
+    //     }
+    // }
 }

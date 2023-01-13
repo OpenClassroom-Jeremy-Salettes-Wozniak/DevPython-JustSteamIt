@@ -12,7 +12,7 @@
     <title>JustStreamIt</title>
     <!-- <script src="assets/js/films.js"></script>
     <script src="assets/js/categorie.js"></script> -->
-    <script src="assets/js/api.js"></script>
+    <script src="assets/js/api.js" defer></script>
 </head>
 <body>
     <!-- importer le fichier ./modules/header/header.html -->
@@ -31,19 +31,8 @@
         </ul>
     </header>
     <main>
-        <h2>Le meilleur film du moment</h2>
-        <div id="best_film">
-        </div>
-        <!-- Créer un carrousel des meilleurs films -->
-        <h2>Les meilleurs films</h2>
-        <div id="best_film_carrousel">
-
-        </div>
-        <!-- Créer des caroussels de films par catégorie -->
-        <div id="categorie_carrousel">
-        
-        </div>
-
+        <section class="meuilleurFilm"></section>
+        <section class="LesMeuilleursFilms"></section>
     </main>
     <footer>
         <p>JustStreamIt &copy; 2021</p>

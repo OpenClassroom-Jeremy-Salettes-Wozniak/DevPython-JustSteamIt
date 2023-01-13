@@ -217,71 +217,108 @@ footer {
   justify-content: center;
 }
 
-main h2 {
+.meuilleurFilm {
+  max-width: 100%;
+  max-height: 100%;
+}
+.meuilleurFilm_container {
+  padding: 1rem;
   background-color: #262626;
+}
+.meuilleurFilm_title {
   color: #FCFCFC;
+}
+.meuilleurFilm_title_h2 {
+  background-color: #262626;
+  font-size: 1rem;
+  padding-block: 0.5rem;
   padding-inline-start: 1rem;
-  padding-block-start: 1rem;
+  border-bottom: #E00712 0.1rem solid;
 }
-
-#best_film {
-  border: 1rem solid #262626;
+.meuilleurFilm_title_h3 {
+  width: 98%;
+  font-size: 1.5rem;
+  color: #FCFCFC;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 30%;
 }
-#best_film img {
+.meuilleurFilm_image {
   width: 100%;
-  height: 525px;
+  height: 580px;
   object-fit: cover;
-  filter: brightness(0.6) blur(4px);
+  filter: brightness(0.6) blur(3.5px);
   display: block;
 }
-#best_film h3 {
+.meuilleurFilm_btn {
+  width: 98%;
+  display: flex;
+  justify-content: center;
   position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #E00712;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
+  top: 45%;
 }
-#best_film button {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.meuilleurFilm_btn button {
   background-color: #E00712;
   color: #FCFCFC;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  font-size: 0.8rem;
+  padding: 0.7rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+}
+
+.LesMeuilleursFilms {
+  max-width: 100%;
+  max-height: 100%;
+  background-color: #262626;
+}
+.LesMeuilleursFilms_title {
+  color: #FCFCFC;
+}
+.LesMeuilleursFilms_title_h2 {
+  background-color: #262626;
   font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  padding-block: 0.5rem;
+  padding-inline-start: 1rem;
+  border-block: #E00712 0.1rem solid;
 }
-#best_film button:hover {
-  background-color: #262626;
-  color: #E00712;
-  cursor: pointer;
-}
-
-#best_film_carrousel, .categorie_carrousel_title {
+.LesMeuilleursFilms_title_h3 {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #FCFCFC;
   display: flex;
   justify-content: center;
-  background-color: #262626;
+  position: absolute;
+  top: 30%;
+}
+.LesMeuilleursFilms_container {
   padding: 1rem;
-  max-width: 70%;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#best_film_carrousel img, .categorie_carrousel_title img {
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-.container_carrousel {
-  background-color: #262626;
+.LesMeuilleursFilms_container_film {
   display: flex;
   justify-content: center;
+}
+.LesMeuilleursFilms_image {
+  display: flex;
+  height: 250px;
+}
+.LesMeuilleursFilms button {
+  height: 251px;
+  position: sticky;
+  width: 6%;
+  background-color: #E00712;
+  color: #FCFCFC;
+  border: 0rem solid;
+}
+.LesMeuilleursFilms button:hover {
+  cursor: pointer;
+}
+.LesMeuilleursFilms span {
+  width: 100%;
 }
 
 /*# sourceMappingURL=output.css.map */
