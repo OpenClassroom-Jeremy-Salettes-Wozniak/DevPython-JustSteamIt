@@ -1,9 +1,10 @@
-let main = document.querySelector('main');
+let mainDocument = document.querySelector('main');
+let suivantMeuilleursFilms;
+let precedentMeuilleursFilms;
 
-let meuilleurFilm = async (k=0, j=1) => {
-    // Création de la section MeuilleurFilm
-    let meuilleurFilm = document.querySelector('.meuilleurFilm');
-
+let meuilleurFilm = async () => {
+    // Slection de la section MeuilleurFilm
+    const bestFilm = document.querySelector('.meuilleurFilm');
     // Création du titre MeuilleurFilm
     meuilleurFilm.innerHTML = "<h2 class='meuilleurFilm_title meuilleurFilm_title_h2'>Meuilleur film</h2>";
 
@@ -11,8 +12,6 @@ let meuilleurFilm = async (k=0, j=1) => {
     try {
         const response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=1");
         const data = await response.json();
-        console.log(data);
-        const bestFilm = document.querySelector('.meuilleurFilm');
         try {
             if (data.results[0]) {
                 bestFilm.innerHTML += "<div class='meuilleurFilm_container'></div>";
@@ -30,9 +29,10 @@ let meuilleurFilm = async (k=0, j=1) => {
         console.log(error);
     }
 }
-meuilleurFilm();
 
-let LesMeuilleursFilms = async () => {
+
+//  Création de la section LesMeuilleursFilms
+let LesMeuilleursFilms = async (j, k) => {
     // Création de la section LesMeuilleursFilms
     let LesMeuilleursFilms = document.querySelector('.LesMeuilleursFilms');
 
@@ -43,49 +43,74 @@ let LesMeuilleursFilms = async () => {
     try {
         const response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=50");
         const data = await response.json();
-        console.log(data);
         if (data.results){
             LesMeuilleursFilms.innerHTML += "<div class='LesMeuilleursFilms_container'></div>";
             const LesMeuilleursFilmsContainer = document.querySelector('.LesMeuilleursFilms_container');
 
-            // Si la taile de l'écran est inférieur à 768px 
-            if (window.innerWidth < 768) {
-                k = 0;
-                j = 1;
-            }
-            // Si la taile de l'écran est inférieur à 1024px
-            else if (window.innerWidth < 1024) {
-                k = 0;
-                j = 3;
-            }
-            // Si la taile de l'écran est supérieur à 1024px
-            else {
-                k = 0;
-                j = 5;
-            }
-            
             // PRECEDENTS
-            LesMeuilleursFilmsContainer.innerHTML += "<button class='LesMeuilleursFilms_btn' type='button'><span>Précédents</span></button>";
+            LesMeuilleursFilmsContainer.innerHTML += "<button id='LesMeuilleursFilms_btn_precedent' type='button'><span>Précédent</span></button>";
 
             // FILMS
             LesMeuilleursFilmsContainer.innerHTML += "<div class='LesMeuilleursFilms_container_film'></div>";
             const LesMeuilleursFilmsContainerFilm = document.querySelectorAll('.LesMeuilleursFilms_container_film');
+            
+            listeFilme =[]
+            data.results.forEach(element => {
+                listeFilme.push(element);
+            });
 
-            for (i = k; i < j; i++) {
-                let film = document.createElement('img');
-                film.setAttribute('class', 'LesMeuilleursFilms_image');
-                film.setAttribute('src', data.results[i].image_url);
-                LesMeuilleursFilmsContainerFilm[0].appendChild(film);
+            console.log(k);
+            console.log(j);
+            
+            // Affichage des 6 premiers elements de la liste 
+            for (let i = j; i < k; i++)
+            {
+                let film = document.createElement('div');
+                film.classList.add('LesMeuilleursFilms_container_film');
+                let filmImage = document.createElement('img');
+                filmImage.classList.add('LesMeuilleursFilms_container_film_image');
+                filmImage.src = listeFilme[i].image_url;
+                filmImage.alt = "Image du film " + listeFilme[i].title;
+                film.appendChild(filmImage);
+                LesMeuilleursFilmsContainer.appendChild(film);
             }
 
             // SUIVANTS
-            LesMeuilleursFilmsContainer.innerHTML += "<button class='LesMeuilleursFilms_btn' type='button'><span>Suivants<span></button>"; 
+            LesMeuilleursFilmsContainer.innerHTML += "<button id='LesMeuilleursFilms_btn_suivant' type='button'><span>Suivant</span></button>";
 
-            
+            suivantMeuilleursFilms = document.getElementById('LesMeuilleursFilms_btn_suivant');
         }
-
     } catch (error) {
         console.log(error);
     }
 }
-LesMeuilleursFilms();
+
+let main = async() => {
+    // Création de la section MeuilleurFilm
+    window.addEventListener('resize', () => {
+        window.location.reload();
+    })
+
+    
+    meuilleurFilm();
+    // Création de la section LesMeuilleursFilms
+    if (window.innerWidth < 768) {
+        let k = 1;
+        let j = 0;
+        LesMeuilleursFilms(j, k);
+    }
+    else if (window.innerWidth < 1024) {
+        let k = 3;
+        let j = 0;
+        LesMeuilleursFilms(j, k);
+    }
+    else {
+        let k = 5;
+        let j = 0;
+        LesMeuilleursFilms(j, k);
+    }
+
+}
+
+
+main();

@@ -308,8 +308,8 @@ footer {
 }
 .LesMeuilleursFilms button {
   height: 251px;
+  min-width: 10%;
   position: sticky;
-  width: 6%;
   background-color: #E00712;
   color: #FCFCFC;
   border: 0rem solid;
@@ -318,7 +318,7 @@ footer {
   cursor: pointer;
 }
 .LesMeuilleursFilms span {
-  width: 100%;
+  padding: 1.5rem;
 }
 
 /*# sourceMappingURL=output.css.map */

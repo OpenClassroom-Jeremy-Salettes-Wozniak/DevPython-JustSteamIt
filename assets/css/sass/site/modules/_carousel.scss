@@ -100,8 +100,8 @@
     }
     button{
         height: 251px;
+        min-width: 10%;
         position: sticky;
-        width: 6%;
         background-color: map-get($colors, color--secondaire);
         color: map-get($colors, color--tertiaire);
         border: 0rem solid;
@@ -110,7 +110,7 @@
         cursor: pointer;
     }
     span{
-        width: 100%;
+        padding: 1.5rem;
     }
     // &_image{
     //     display: block;
