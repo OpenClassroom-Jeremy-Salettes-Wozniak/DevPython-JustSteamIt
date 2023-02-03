@@ -307,7 +307,7 @@ footer {
   height: 250px;
 }
 .LesMeuilleursFilms button {
-  height: 251px;
+  height: 268px;
   min-width: 10%;
   position: sticky;
   background-color: #E00712;
@@ -319,6 +319,16 @@ footer {
 }
 .LesMeuilleursFilms span {
   padding: 1.5rem;
+}
+.LesMeuilleursFilms_container {
+  display: flex;
+  padding: 1rem;
+  background-color: #262626;
+  justify-content: center;
+}
+.LesMeuilleursFilms_container_film {
+  display: flex;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=output.css.map */

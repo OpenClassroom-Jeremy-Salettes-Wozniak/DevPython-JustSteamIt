@@ -99,7 +99,7 @@
         height: 250px;
     }
     button{
-        height: 251px;
+        height: 268px;
         min-width: 10%;
         position: sticky;
         background-color: map-get($colors, color--secondaire);
@@ -117,16 +117,17 @@
     //     width: 14.3%;
     // }
 
-    // &_container{
-    //     display: flex;
-    //     padding: 1rem;
-    //     background-color: map-get($colors, color--primaire);
-    //     justify-content: center;
+    &_container{
+        display: flex;
+        padding: 1rem;
+        background-color: map-get($colors, color--primaire);
+        justify-content: center;
 
-    //     &_film{
-    //         display: flex;
-    //     }
-    // }
+        &_film{
+            display: flex;
+            overflow: hidden;
+        }
+    }
 
     // &_btn{
     //     display: flex;
