@@ -34,9 +34,7 @@ let affichageFilm = async (i, j, data) => {
 
         // FILMS
         let divFilm = document.querySelector('.LesMeuilleursFilms_container_film');
-        console.log(i)
-        console.log(j)
-        console.log(data) // data.results est un tableau contentant les 50 films
+        
 
         // Affichage des films en fonction de i et j
         divFilm.innerHTML = "";
@@ -51,7 +49,6 @@ let affichageFilm = async (i, j, data) => {
         console.log(error);
     }
 }
-
 
 let LesMeuilleursFilms = async (i, j) => {
     
@@ -81,7 +78,6 @@ let LesMeuilleursFilms = async (i, j) => {
                 divFilm.classList.add('LesMeuilleursFilms_container_film');
                 divContainer.appendChild(divFilm);
 
-            console.log(data.results.length);
             if(data.results.length > 1){
                 // PRECEDENTS
                 let precedent = document.createElement('button');
@@ -139,6 +135,159 @@ let LesMeuilleursFilms = async (i, j) => {
 
 };
 
+let affichageFilmCategorie = async (i, j, data) => {
+    console.log(i, j, data);
+    // Affichage des meilleurs films avec appel de l'API
+    try {
+        // selection categories_container_film
+        let divFilm = document.querySelector('.categories_container_film');
+        console.log(divFilm);
+
+        // Affichage des films en fonction de i et j
+        for(i ; i < j; i++){
+            film = "<a href='http://localhost:8000/film/" + data[i].id + "'><img src='" + data[i].image_url + "' alt='Image du film " + data[i].title + "'></a>";
+            divFilm.innerHTML += film;
+        }
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+let categories = async (i, j) => {
+    try {
+        // On recupère les 7 premiere catégories, changez la valeur de page_size pour en avoir plus
+        const response = await fetch("http://localhost:8000/api/v1/genres/?page_size=7");
+        const data = await response.json();
+
+        // On récupère la div categories
+        categories = document.querySelector('.categories');
+
+        // Pour chaque catégorie on affiche le titre de la catégorie
+        for(let s = 0 ; s < data.results.length ; s++){
+            categorie = "<h2 class='categories_title categories_title_h2'><a href='http://localhost:8000/categorie/" + data.results[s].id + "'>" + data.results[s].name + "</a></h2>";
+            categories.innerHTML += categorie;
+
+            // On créer un container pour les films
+            categorie_container = document.createElement('div');
+            categorie_container.classList.add('categories_container');
+            categories.appendChild(categorie_container);
+
+            // On créer les boutons précédents et suivants
+            // PRECEDENTS
+            let precedent = document.createElement('button');
+            precedent.id = "categories_btn_precedent";
+            precedent.type = "button";
+            precedent.innerHTML = "<span>Précédent</span>";
+            categorie_container.insertBefore(precedent, categorie_container.firstChild);
+            // SUIVANTS
+            let suivant = document.createElement('button');
+            suivant.id = "categories_btn_suivant";
+            suivant.type = "button";
+            suivant.innerHTML = "<span>Suivant</span>";
+            categorie_container.appendChild(suivant, categorie_container.firstChild);
+
+            // On créer un container pour les films
+            categorie_container_film = document.createElement('div');
+            categorie_container_film.classList.add('categories_container_film');
+            categorie_container.appendChild(categorie_container_film);
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+
+
+    //         categorie_container = document.createElement('div');
+    //         categorie_container.classList.add('categories_container');
+    //         categories.appendChild(categorie_container);
+
+    //         categorie_container_film = document.createElement('div');
+    //         categorie_container_film.classList.add('categories_container_film');
+    //         categorie_container.appendChild(categorie_container_film);
+
+            
+    //         // PRECEDENTS
+    //         let precedent = document.createElement('button');
+    //         precedent.id = "categories_btn_precedent";
+    //         precedent.type = "button";
+    //         precedent.innerHTML = "<span>Précédent</span>";
+    //         categorie_container.insertBefore(precedent, categorie_container.firstChild);
+    //         // SUIVANTS
+    //         let suivant = document.createElement('button');
+    //         suivant.id = "categories_btn_suivant";
+    //         suivant.type = "button";
+    //         suivant.innerHTML = "<span>Suivant</span>";
+    //         categorie_container.appendChild(suivant, categorie_container.firstChild);
+
+
+    //         // Affichage des films par catégories avec appel de l'API
+    //         const response_film = await fetch("http://localhost:8000/api/v1/titles/?genre=" + data.results[i].name + "&sort_by=-imdb_score&page_size=50");
+    //         const data_film = await response_film.json();
+    //         categoriesFilm(i, j, data_film.results);
+    //     }
+    // }
+    // catch (error) {
+    //     console.log(error);
+    // }
+}
+
+// let categoriesFilm = async (i, j, data) => {
+//     // Affichage des films en fonction de i et j
+//     try {
+//         let categorie_container_film = document.querySelector('.categories_container_film');
+//         console.log(data);
+//         if (data.length > 1) {
+//             let suivant_category_film = document.querySelector('.categories_btn_suivant');
+//             let precedent_category_film = document.querySelector('.categories_btn_precedent');
+
+//             suivant_category_film.addEventListener('click', function(e){
+//                 e.preventDefault();
+//                 if(j == data.length){
+//                     soustraction = data.length - i;
+//                     i = data.length - soustraction;
+//                     j = data.length;
+//                     affichageFilm(i, j, data);
+                
+//                 }
+//                 else{
+//                     i = i + 1;
+//                     j = j + 1;
+//                     affichageFilm(i, j, data);
+//                 }
+//             }
+//             );
+        
+//             precedent_category_film.addEventListener('click', function(e){
+//                 e.preventDefault();
+//                 if(i == 0){
+//                     i = i;
+//                     j = j;
+//                     affichageFilm(i, j, data);
+//                 }
+//                 else{
+//                     i = i - 1;
+//                     j = j - 1;
+//                     affichageFilm(i, j, data);
+//                 }
+//             }
+//             );
+
+//             for (let k = i; k < j; k++) {
+//                 let film = "<div class='categories_container_film_film'><a href='http://localhost:8000/film/" + data[k].id + "'><img src='" + data[k].image_url + "' alt=''></a></div>";
+//                 categorie_container_film.innerHTML += film;
+//             }
+//         }
+
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
 let main = async() => {
     // Création de la section MeuilleurFilm
     window.addEventListener('resize', () => {
@@ -151,16 +300,17 @@ let main = async() => {
     // Création de la section LesMeuilleursFilms
     if (window.innerWidth < 768) {
         LesMeuilleursFilms(0, 1);
+        categories(0, 1);
 
     }
     else if (window.innerWidth < 1024) {
         LesMeuilleursFilms(0, 4);
-
+        categories(0, 4);
     }
     else {
         LesMeuilleursFilms(0, 6);
+        categories(0, 6);
     }
-
 }
 
 
