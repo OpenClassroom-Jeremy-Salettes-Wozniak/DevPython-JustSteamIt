@@ -76,18 +76,8 @@ let film_meuilleur = async () => {
         meuilleurFilm_btn_selector[0].addEventListener('click', () => {
             let meuilleurFilm_modal = document.getElementsByClassName('meuilleurFilm_modal')
             meuilleurFilm_modal[0].style.display = 'block'
-            meuilleurFilm_container.style.display = 'none'
         }
         )
-        /// On créer un event pour fermer le modal du film
-        let meuilleurFilm_btn_selector_modal = document.getElementsByClassName('meuilleurFilm_modal_btn')
-        meuilleurFilm_btn_selector_modal[0].addEventListener('click', () => {
-            let meuilleurFilm_modal = document.getElementsByClassName('meuilleurFilm_modal')
-            meuilleurFilm_modal[0].style.display = 'none'
-            meuilleurFilm_container.style.display = 'block'
-        }
-        )
-
 
     } catch (error) {
         // Si il y a une erreur on l'affiche dans la console
@@ -103,43 +93,60 @@ let film_meuilleur_list = async (a, b) => {
         // On selectionne l'element html qui va contenir le meuilleur film
         let html_selector = document.querySelector('.meuilleurFilm_list')
 
-        // On créer un container pour le meuilleur film
-        let meuilleurFilm_list_container = document.createElement('div')
-        meuilleurFilm_list_container.classList.add('meuilleurFilm_list_container')
         
         // On créer un titre de categorie
         let meuilleurFilm_list_title = document.createElement('h2')
         meuilleurFilm_list_title.innerHTML = 'Meuilleurs films'
         meuilleurFilm_list_title.classList.add('meuilleurFilm_list_title')
         meuilleurFilm_list_title.classList.add('meuilleurFilm_list_title_h2')
-        meuilleurFilm_list_container.appendChild(meuilleurFilm_list_title)
+        html_selector.appendChild(meuilleurFilm_list_title)
 
         // On créer un container pour les filmes
         let meuilleurFilm_list_films_container = document.createElement('div')
         meuilleurFilm_list_films_container.classList.add('meuilleurFilm_list_films')
-        meuilleurFilm_list_container.appendChild(meuilleurFilm_list_films_container)
-        console.log(a)
-        console.log(b)
-        let film = data_film
-        console.log(film)
-        
+        html_selector.appendChild(meuilleurFilm_list_films_container)
+        // console.log(a)
+        // console.log(b)
+        // console.log(data_film)
+            
+        // On créer le bouton précédent et suivant
+        let meuilleurFilm_list_btn_precedent = document.createElement('button')
+        meuilleurFilm_list_btn_precedent.innerHTML = 'Précédent'
+        meuilleurFilm_list_btn_precedent.classList.add('meuilleurFilm_list_btn_precedent')
+        meuilleurFilm_list_films_container.before(meuilleurFilm_list_btn_precedent)
+        meuilleurFilm_list_btn_precedent.addEventListener('click', () => {
+            a -= 1
+            b -= 1
+            film_meuilleur_list(a, b)
+        })
+
+
         // parcoure data_film de a jusqu'a b
         for (let i = a; i < b; i++) {
             // On créer un container pour le meuilleur film
-            console.log(data_film[i])
+            // console.log(data_film[i])
+            modal(i, "meuilleurFilm_list_films", data_film[i], data_film[i].id)
+            console.log(i)  
+            // On créer un les href pour les filmes
+            let meuilleurFilm_list_href = document.createElement('a')
+            meuilleurFilm_list_href.href = '#'
+            meuilleurFilm_list_href.classList.add('meuilleurFilm_list_href', 'meuilleurFilm_list_btn_' + data_film[i].id)
+            meuilleurFilm_list_films_container.appendChild(meuilleurFilm_list_href)
 
             // On créer un les images pour les filmes
             let meuilleurFilm_list_img = document.createElement('img')
             meuilleurFilm_list_img.src = data_film[i].image_url
             meuilleurFilm_list_img.classList.add('meuilleurFilm_list_img', 'meuilleurFilm_list_img_' + data_film[i].id)
-            meuilleurFilm_list_films_container.appendChild(meuilleurFilm_list_img)
+            meuilleurFilm_list_href.appendChild(meuilleurFilm_list_img)
 
-
+            let meuilleurFilm_list_btn = document.getElementsByClassName('meuilleurFilm_list_btn_' + data_film[i].id)
+            let meuilleurFilm_list_modal = document.getElementsByClassName('meuilleurFilm_list_films_modal_' + data_film[i].id)
+            
+            meuilleurFilm_list_btn[0].addEventListener('click', () => {
+                alert('ok : ' + data_film[i].id)
+                meuilleurFilm_list_modal[0].style.display = 'block'
+            })
         }
-        // On ajoute le meuilleur film dans le html ! Important doit être en bas du code !
-        html_selector.appendChild(meuilleurFilm_list_container)
-
-        
 
     } catch (error) {
         // Si il y a une erreur on l'affiche dans la console
@@ -151,8 +158,8 @@ let film_meuilleur_list = async (a, b) => {
 // Fonction qui va afficher les categories
 
 // Fonction modal 
-let modal = async (nameClass, data_film, id="", categories_names=action="") => {
-    
+let modal = async (i, nameClass, data_film, id="", categories_names="") => {
+    console.log(i)
     try {
         // On selectionne le bouton pour le meuilleur film
         let btn_selector = document.getElementsByClassName(nameClass + '_btn')
@@ -162,7 +169,8 @@ let modal = async (nameClass, data_film, id="", categories_names=action="") => {
         if (categories_names){
             btn_selector = document.getElementsByClassName(nameClass + '_btn_' + id + '_' + categories_names)
         }
-        let modal = document.createElement('div')
+        let modal = document.createElement('a')
+        modal.href = '#'
         modal.classList.add(nameClass + '_modal')
         html_selector = document.getElementsByClassName(nameClass)
         html_selector[0].appendChild(modal)
@@ -170,31 +178,34 @@ let modal = async (nameClass, data_film, id="", categories_names=action="") => {
         modal.style.display = 'none'
         modal.style.position = 'sticky'
         /// On créer le content du modal du film
-        let modal_content = document.createElement('div')
-        modal_content.classList.add(nameClass + '_modal_content')
-        modal.appendChild(modal_content)
+        modal.classList.add(nameClass + '_modal_' + id)
         /// On créer le titre du modal du film
         let modal_title = document.createElement('h3')
         modal_title.innerHTML = data_film.title
         modal_title.classList.add(nameClass + '_modal_title')
-        modal_content.appendChild(modal_title)
+        modal.appendChild(modal_title)
         /// On créer le bouton pour fermer le modal du film
         let modal_btn = document.createElement('button')
         modal_btn.innerHTML = 'X'
         modal_btn.classList.add(nameClass + '_modal_btn')
-        modal_content.appendChild(modal_btn)
+        modal.appendChild(modal_btn)
+
         let modal_btn_selector = document.getElementsByClassName(nameClass + '_modal_btn')
+        console.log(modal_btn_selector)
+        modal_btn_selector[i].addEventListener('click', () => {
+            modal.style.display = 'none'
+        })
+
         /// On créer l'image du modal du film
         let modal_img = document.createElement('img')
         modal_img.src = data_film.image_url
 
         modal_img.classList.add(nameClass + '_modal_img')
-        modal_content.appendChild(modal_img)
+        modal.appendChild(modal_img)
 
         // On ajoute le meuilleur film dans le html ! Important doit être en bas du code !
         html_selector[0].appendChild(modal)
 
-        // On créer un event pour afficher le modal du film
 
     } 
     catch (error) {
