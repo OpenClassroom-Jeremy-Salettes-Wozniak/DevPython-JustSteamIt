@@ -6,6 +6,8 @@ let main = async () => {
         window.location.reload();
     })
 
+    let film_meuilleur_list_btn_precedent = document.getElementsByClassName("meuilleurFilm_list_btn_precedent")
+    // Transformer en tableau 
     if (window.innerWidth < 768) {
         // Execute ce code
         console.log('Mobile')
@@ -114,19 +116,17 @@ let film_meuilleur_list = async (a, b) => {
         meuilleurFilm_list_btn_precedent.innerHTML = 'Précédent'
         meuilleurFilm_list_btn_precedent.classList.add('meuilleurFilm_list_btn_precedent')
         meuilleurFilm_list_films_container.before(meuilleurFilm_list_btn_precedent)
-        meuilleurFilm_list_btn_precedent.addEventListener('click', () => {
-            a -= 1
-            b -= 1
-            film_meuilleur_list(a, b)
-        })
-
+        
+        let meuilleurFilm_list_btn_suivant = document.createElement('button')
+        meuilleurFilm_list_btn_suivant.innerHTML = 'Suivant'
+        meuilleurFilm_list_btn_suivant.classList.add('meuilleurFilm_list_btn_suivant')
+        meuilleurFilm_list_films_container.after(meuilleurFilm_list_btn_suivant)
 
         // parcoure data_film de a jusqu'a b
         for (let i = a; i < b; i++) {
             // On créer un container pour le meuilleur film
             // console.log(data_film[i])
             modal(i, "meuilleurFilm_list_films", data_film[i], data_film[i].id)
-            console.log(i)  
             // On créer un les href pour les filmes
             let meuilleurFilm_list_href = document.createElement('a')
             meuilleurFilm_list_href.href = '#'
@@ -159,7 +159,6 @@ let film_meuilleur_list = async (a, b) => {
 
 // Fonction modal 
 let modal = async (i, nameClass, data_film, id="", categories_names="") => {
-    console.log(i)
     try {
         // On selectionne le bouton pour le meuilleur film
         let btn_selector = document.getElementsByClassName(nameClass + '_btn')
@@ -191,7 +190,6 @@ let modal = async (i, nameClass, data_film, id="", categories_names="") => {
         modal.appendChild(modal_btn)
 
         let modal_btn_selector = document.getElementsByClassName(nameClass + '_modal_btn')
-        console.log(modal_btn_selector)
         modal_btn_selector[i].addEventListener('click', () => {
             modal.style.display = 'none'
         })
