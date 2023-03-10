@@ -5,13 +5,16 @@ let main = async () => {
     window.addEventListener('resize', () => {
         window.location.reload();
     })
-
     let film_meuilleur_list_btn_precedent = document.getElementsByClassName("meuilleurFilm_list_btn_precedent")
-    // Transformer en tableau 
+    let film_meuilleur_list_btn_suivant = document.getElementsByClassName("meuilleurFilm_list_btn_suivant")
+    console.log(film_meuilleur_list_btn_precedent.length)
+    console.log(film_meuilleur_list_btn_precedent[0])
+    console.log(film_meuilleur_list_btn_precedent)
+
     if (window.innerWidth < 768) {
         // Execute ce code
         console.log('Mobile')
-        film_meuilleur_list(0, 2)
+
     }
     else if (window.innerWidth < 1024) {
         // Execute ce code
@@ -26,6 +29,7 @@ let main = async () => {
 
     // Affiche par défaut
     film_meuilleur()
+    categories_list()
 }
 // Fonction qui va prendre en compte une url d'api et retourner la response
 let api = async (url) => {
@@ -154,9 +158,58 @@ let film_meuilleur_list = async (a, b) => {
     }
 }
 // Fonction qui va afficher les filmes par categories
+let film_categories_list = async (a, b, categories_names) => {
+    try {
+        // On appelle l'API classé par note et on prend le premier film
+        let response = await api("http://localhost:8000/api/v1/titles/?genre=" + categories_names + "&sort_by=-imdb_score&page_size=10");
+        let data_film = response.results
+
+        // On selectionne l'element html qui va contenir le meuilleur film
+        let html_selector = document.getElementById('categories_' + categories_names)
+        
+        // Après le titre on créer un container pour les filmes
+        let categories_list_films_container = document.createElement('div')
+        categories_list_films_container.classList.add('categories_list_films')
+        html_selector.after(categories_list_films_container)
+        
+
+        for(let i = 0; i < data_film.length; i++) {
+            // Films
+            
+        }
+
+        console.log(html_selector)
+        console.log(data_film)
+    } catch (error) {
+        // Si il y a une erreur on l'affiche dans la console
+        console.log(error)
+    }
+}
 
 // Fonction qui va afficher les categories
+let categories_list = async () => {
+    try {
+        // On appelle l'API classé par note et on prend le premier film
+        let response = await api("http://localhost:8000/api/v1/genres/");
+        let data_categories = response.results
+        // On selectionne l'element html qui va contenir le meuilleur film
+        let html_selector = document.querySelector('.categories')
+        console.log(data_categories)
+        for(let i = 0; i < data_categories.length; i++) {
+            // On créer un titre de categorie
+            let categories_list_title = document.createElement('h2')
+            categories_list_title.innerHTML = data_categories[i].name
+            categories_list_title.id = 'categories_' + data_categories[i].name
+            html_selector.appendChild(categories_list_title)
 
+
+            film_categories_list(0, 5, data_categories[i].name)
+        }
+    } catch (error) {
+        // Si il y a une erreur on l'affiche dans la console
+        console.log(error)
+    }
+}
 // Fonction modal 
 let modal = async (i, nameClass, data_film, id="", categories_names="") => {
     try {
