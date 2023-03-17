@@ -5,31 +5,44 @@ let main = async () => {
     window.addEventListener('resize', () => {
         window.location.reload();
     })
-    let film_meuilleur_list_btn_precedent = document.getElementsByClassName("meuilleurFilm_list_btn_precedent")
-    let film_meuilleur_list_btn_suivant = document.getElementsByClassName("meuilleurFilm_list_btn_suivant")
-    console.log(film_meuilleur_list_btn_precedent.length)
-    console.log(film_meuilleur_list_btn_precedent[0])
-    console.log(film_meuilleur_list_btn_precedent)
+    let film_meuilleur_list_btn_suivant = await document.getElementsByClassName("meuilleurFilm_list_btn_suivant")
+    let film_meuilleur_list_btn_precedent = await document.getElementsByClassName("meuilleurFilm_list_btn_precedent")
+    // Affiche par défaut
+    await film_meuilleur()
+    await categories_list()
 
     if (window.innerWidth < 768) {
         // Execute ce code
+        let x = 0
+        let y = 2
         console.log('Mobile')
+        film_meuilleur_list(x, y)
 
     }
     else if (window.innerWidth < 1024) {
         // Execute ce code
         console.log('Tablette')
-        film_meuilleur_list(0, 4)
+        let x = 0
+        let y = 4
+        film_meuilleur_list(x, y)
     }
     else {
         // Execute ce code
         console.log('Ordinateur')
-        film_meuilleur_list(0, 6)
+        let x = 0
+        let y = 6
+        // Si click sur le bouton suivant
+        film_meuilleur_list(x, y)
+        film_meuilleur_list_btn_suivant[0].addEventListener('click', () => {
+            x = x + 1
+            y = y + 1
+        })
+
     }
 
-    // Affiche par défaut
-    film_meuilleur()
-    categories_list()
+
+
+
 }
 // Fonction qui va prendre en compte une url d'api et retourner la response
 let api = async (url) => {
